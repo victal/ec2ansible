@@ -221,6 +221,13 @@ class Ec2InventoryGenerator(InventoryGenerator):
         :type instance: Instance
         :rtype: string
         """
+        host_variable = self.config.get('host_variable')
+        if host_variable:
+            host = getattr(instance, host_variable, None) 
+            if host is None:
+                host = getattr(instance, 'tags').get(self.vpc_destination_variable, None)
+
+            return host
         if instance.vpc_id is None:
             return instance.ip_address
         else:

@@ -13,6 +13,8 @@ DEFAULT_CONFIG = {
     'cache_max_age': 300,
 
     'instance_filters': '',
+
+    'host_variable': None
 }
 
 
@@ -33,3 +35,6 @@ def parse_args():
     parser.add_argument('--list', action='store_true', help='List instances (default behavior)')
 
     return parser.parse_args()
+
+if __name__ == '__main__':
+    main()
